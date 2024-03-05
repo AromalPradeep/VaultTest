@@ -19,6 +19,7 @@ func client() {
 	if err != nil {
 		panic(err)
 	}
+	defer connection.Close()
 
 	// send some data
 	_, err = connection.Write([]byte("Hello Server! Greetings from contact_B."))
@@ -34,5 +35,4 @@ func client() {
 		fmt.Println("Error reading:", err.Error())
 	}
 	fmt.Println("Recieved Response from A: ", string(buffer[:mLen]))
-	defer connection.Close()
 }
